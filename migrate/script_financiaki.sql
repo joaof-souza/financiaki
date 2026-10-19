@@ -24,7 +24,7 @@ CREATE TABLE despesas (
  login VARCHAR(20) NOT NULL,
  descricao VARCHAR(100),
  data DATE,
- hora TIME(10),
+ hora TIME(6),
  valor DECIMAL(2),
  cod_categoria INT NOT NULL,
 
