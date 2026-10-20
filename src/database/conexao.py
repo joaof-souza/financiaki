@@ -17,7 +17,7 @@ class Conexao:
                 database='financiaki'
             )
 
-            cursor = conexao.cursor()
+            cursor = conexao.cursor(dictionary=True)
 
             return(conexao,cursor)
         
