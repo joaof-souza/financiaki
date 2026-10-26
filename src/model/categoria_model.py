@@ -50,19 +50,19 @@ class Categoria:
 
 
     @staticmethod
-    def excluir (id_categoria: int) -> bool:
+    def excluir (cod_categoria: int) -> bool:
         conexao, cursor = Conexao().conectar()
 
         try:
             cursor.execute('''
-                            DELETE FROM tb_categoria
-                            WHERE id_categoria = %s
+                            DELETE FROM tb_categorias
+                            WHERE cod_categoria = %s
                             ''',
-                            [id_categoria])
+                            [cod_categoria])
 
             conexao.commit()
             conexao.close()
             return True
 
         except:
-            return False
+            print('Erro ao excluir categoria!')
