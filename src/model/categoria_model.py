@@ -5,7 +5,7 @@ class Categoria:
         pass
 
     @staticmethod
-    def adicionar (login:str, categoria:str) -> bool:
+    def adicionar (login:str, categoria:str) -> int:
         conexao, cursor = Conexao().conectar()
 
         if not conexao:
@@ -18,10 +18,11 @@ class Categoria:
                             VALUES (%s, %s)
                             ''',
                             [login, categoria])
+            id_categoria = cursor.lastrowid
+            
             conexao.commit()
             conexao.close()
-
-            return True
+            return id_categoria
 
         except:
             print('Não foi possível cadastrar esses valores!')
@@ -46,3 +47,22 @@ class Categoria:
         conexao.close()
 
         return resultado
+
+
+    @staticmethod
+    def excluir (id_categoria: int) -> bool:
+        conexao, cursor = Conexao().conectar()
+
+        try:
+            cursor.execute('''
+                            DELETE FROM tb_categoria
+                            WHERE id_categoria = %s
+                            ''',
+                            [id_categoria])
+
+            conexao.commit()
+            conexao.close()
+            return True
+
+        except:
+            return False
