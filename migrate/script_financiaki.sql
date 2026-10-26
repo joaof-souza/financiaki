@@ -33,3 +33,34 @@ CREATE TABLE tb_despesas (
  FOREIGN KEY (login) REFERENCES tb_usuarios (login),
  FOREIGN KEY (cod_categoria,login) REFERENCES tb_categorias (cod_categoria,login)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
