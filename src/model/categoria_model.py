@@ -28,31 +28,15 @@ class Categoria:
             print('Não foi possível cadastrar esses valores!')
             return False
 
-    @staticmethod
-    def verificar(login:str, categoria:str) -> dict:
-        conexao, cursor = Conexao().conectar()
-
-        if conexao == None:
-            print('Não existe essa categoria')
-            return None
-
-        cursor.execute('''
-                        SELECT cod_categoria, login, categoria FROM tb_categorias
-                        WHERE login = %s
-                        AND categoria = %s
-                        ''',
-                        [login, categoria])
-
-        resultado = cursor.fetchone()
-        conexao.close()
-
-        return resultado
-
 
     @staticmethod
     def excluir (cod_categoria: int) -> bool:
         conexao, cursor = Conexao().conectar()
 
+        if not conexao:
+            print('Erro ao tentar conectar!')
+            return False
+        
         try:
             cursor.execute('''
                             DELETE FROM tb_categorias
@@ -62,7 +46,33 @@ class Categoria:
 
             conexao.commit()
             conexao.close()
+            print(f'Categoria {cod_categoria} excluida!')
             return True
 
         except:
             print('Erro ao excluir categoria!')
+            return False
+
+
+    @staticmethod
+    def recuperar(login:str) -> dict:
+        conexao, cursor = Conexao().conectar()
+
+        try:
+            if conexao == None:
+                print('Erro ao tentar conectar')
+                return None
+
+            cursor.execute('''
+                            SELECT cod_categoria, categoria, login FROM tb_categorias
+                            WHERE login = %s
+                            ''',
+                            [login])
+
+            categorias = cursor.fetchall()
+            conexao.close()
+            print(categorias)
+
+        except:
+            print('Erro ao exibir categorias')
+            return False
