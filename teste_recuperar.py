@@ -1,4 +1,4 @@
 from src.model.categoria_model import Categoria
 
-resultado = Categoria().recuperar('neyma')
+resultado = Categoria().recuperar('neymar')
 print(resultado)

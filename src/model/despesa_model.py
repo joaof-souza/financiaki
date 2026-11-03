@@ -5,7 +5,7 @@ class Despesas:
         pass
 
     @staticmethod
-    def adcionar (login:str, descricao:str, data:str, valor:float, cod_categoria:int) -> int:
+    def adcionar (login:str, descricao:str, data:str, valor:float, hora:str, cod_categoria:int) -> int:
         conexao, cursor = Conexao().conectar()
 
         if not conexao:
@@ -14,10 +14,10 @@ class Despesas:
 
         try:
             cursor.execute('''
-                            INSERT INTO tb_despesas(login, descricao, data, hora, valor)
-                            VALUES (%s, %s, %s, %s, %s)
+                            INSERT INTO tb_despesas(login, descricao, data, hora, valor, cod_categoria)
+                            VALUES (%s, %s, %s, %s, %s, %s)
                             ''',
-                            [login, descricao, data, valor, cod_categoria])
+                            [login, descricao, data, valor, hora, cod_categoria])
             cod_despesas = cursor.lastrowid
 
             conexao.commit()
@@ -40,7 +40,7 @@ class Despesas:
                 return None
 
             cursor.execute('''
-                            SELECT login, descricao, data, valor, id categoria login FROM tb_despesas
+                            SELECT login, descricao, data, valor, cod_categoria FROM tb_despesas
                             WHERE login = %s
                             ''',
                             [login])
@@ -65,9 +65,9 @@ class Despesas:
                 return None
 
             cursor.execute('''
-                            SELECT login, descricao, data, valor, id categoria login FROM tb_despesas
-                            login = %s
-                            cod_categoria = %s,
+                            SELECT login, descricao, data, valor, cod_categoria FROM tb_despesas
+                            WHERE login = %s
+                            AND cod_categoria = %s
                             ''',
                             [login, cod_categoria])
 
