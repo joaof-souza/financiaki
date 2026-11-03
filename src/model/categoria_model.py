@@ -18,11 +18,11 @@ class Categoria:
                             VALUES (%s, %s)
                             ''',
                             [login, categoria])
-            id_categoria = cursor.lastrowid
+            cod_categoria = cursor.lastrowid
             
             conexao.commit()
             conexao.close()
-            return id_categoria
+            return cod_categoria
 
         except:
             print('Não foi possível cadastrar esses valores!')
