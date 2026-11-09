@@ -4,7 +4,7 @@ from src.view.login_usuario_view import LoginUsuarioView
 
 def main(pagina:ft.Page):
     tela_cadastro_usuario = CadastroUsuarioView(pagina)
-    tela_login_usuario = LoginUsuarioView
+    tela_login_usuario = LoginUsuarioView(pagina)
 
     def roteamento(e=None):
         pagina.views.clear()
@@ -17,12 +17,10 @@ def main(pagina:ft.Page):
 
         pagina.update()
 
-    #associando a função de roteamento para sempre que houver uma troca de telas chamar a função
+    
     pagina.on_route_change = roteamento
     roteamento()
 
-
     #abrindo pagina inicial
     pagina.views.append(tela_cadastro_usuario)
-
 ft.run(main)
