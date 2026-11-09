@@ -16,26 +16,51 @@ class CadastroUsuarioView(ft.View):
 
         titulo = ft.Text(value='Cadastro de Usuario')
 
-        self.campo_usuario = ft.TextField(label='Usuário')
+        self.campo_usuario = ft.TextField(label='Usuário',
+                                          
+                                          width=300)
         self.campo_senha = ft.TextField(label='Senha',
                                    password=True,
-                                   can_reveal_password=True)
+                                   can_reveal_password=True,
+                                   
+                                   width=300)
 
-        botao_cadastrar = ft.Button(content='CADASTRAR',
-                                    on_click=self.cadastrar)
+        botao_cadastrar = ft.OutlinedButton(content='CADASTRAR',
+                                    on_click=self.cadastrar,
+                                width=300,
+                                height=45,
+                                style= ft.ButtonStyle(
+                                                      color="#707070",
+                                                      overlay_color="#E0E0E0",
+                                                      shape=ft.RoundedRectangleBorder(radius=5),
+                                                      side=ft.BorderSide(width=0.3, color="#000000"),
+                                                      elevation=0)
+                                    )
         
-        botao_voltar = ft.Button(content='VOLTAR PARA O LOGIN',
-                                 on_click=self.ir_para_login)
+        botao_voltar = ft.OutlinedButton(content='VOLTAR PARA O LOGIN',
+                                on_click=self.ir_para_login,                                 
+                                width=300,
+                                height=45,
+                                style= ft.ButtonStyle(
+                                                      color="#707070",
+                                                      overlay_color="#E0E0E0",
+                                                      shape=ft.RoundedRectangleBorder(radius=5),
+                                                      side=ft.BorderSide(width=0.3, color="#000000"),
+                                                      elevation=0)
+                                
+                                
+                                )
 
 
-        linha_botoes = ft.Row(controls=[botao_cadastrar,botao_voltar],
+
+        coluna_botoes = ft.Column(controls=[botao_cadastrar,botao_voltar],
                              alignment='center')
 
 
         self.controls = [titulo,
                          self.campo_usuario,
                          self.campo_senha,
-                         linha_botoes]
+                         coluna_botoes]
 
 
     def cadastrar(self):
