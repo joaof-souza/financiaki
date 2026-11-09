@@ -44,9 +44,9 @@ class LoginUsuarioView(ft.View):
         senha = self.campo_senha.value
 
         if Usuario().verificar(usuario,senha):
-            print('ta ok')
+            self.pagina.show_dialog(ft.SnackBar(ft.Text("Login efetuado com sucesso!",color="#69ec48")))
         else:
-            print('nao ta ok')
+            self.pagina.show_dialog(ft.SnackBar(ft.Text("O usuário ou senha estão incorretos.", color="#ce2222")))
 
     async def ir_para_cadastrar(self):
         await self.pagina.push_route('/cadastro')
