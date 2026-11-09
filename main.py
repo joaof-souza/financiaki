@@ -4,7 +4,7 @@ from src.view.login_usuario_view import LoginUsuarioView
 
 def main(pagina:ft.Page):
     tela_cadastro_usuario = CadastroUsuarioView(pagina)
-    tela_login_usuario = LoginUsuarioView
+    tela_login_usuario = LoginUsuarioView(pagina)
 
     def roteamento(e=None):
         pagina.views.clear()
