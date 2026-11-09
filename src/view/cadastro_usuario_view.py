@@ -5,6 +5,8 @@ class CadastroUsuarioView(ft.View):
     def __init__(self, pagina:ft.Page):
         super().__init__()
 
+        self.route = '/cadastro'
+
         self.bgcolor = "#ECEDEF"
 
         self.vertical_alignment = 'CENTER'

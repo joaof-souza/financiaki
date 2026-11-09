@@ -1,0 +1,18 @@
+import flet as ft
+from src.model.usuario_model import Usuario
+
+class LoginUsuarioView(ft.View):
+    def __init__(self, pagina:ft.Page):
+        super().__init__()
+
+        self.route = '/login'
+
+        self.bgcolor = "#ECEDEF"
+
+        self.vertical_alignment = 'CENTER'
+        self.horizontal_alignment = 'CENTER'
+
+        titulo = ft.Text(value='Login')
+
+
+        self.controls = [titulo]
