@@ -44,9 +44,9 @@ class LoginUsuarioView(ft.View):
         senha = self.campo_senha.value
 
         if Usuario().verificar(usuario,senha):
-            print('AAAAAAAAAAAAAAAAAAAAAAA')
+            print('ta ok')
         else:
-            print('kkk')
+            print('nao ta ok')
 
     async def ir_para_cadastrar(self):
         await self.pagina.push_route('/cadastro')
