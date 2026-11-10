@@ -1,10 +1,12 @@
 import flet as ft
 from src.view.cadastro_usuario_view import CadastroUsuarioView
 from src.view.login_usuario_view import LoginUsuarioView
+from src.view.pagina_inicial_view import PaginaInicialView
 
 def main(pagina:ft.Page):
     tela_cadastro_usuario = CadastroUsuarioView(pagina)
     tela_login_usuario = LoginUsuarioView(pagina)
+    tela_inicial = PaginaInicialView(pagina)
 
     def roteamento(e=None):
         pagina.views.clear()
@@ -15,6 +17,9 @@ def main(pagina:ft.Page):
         elif pagina.route == '/login':
             pagina.views.append(tela_login_usuario)
 
+        elif pagina.route == '/inicio':
+            pagina.views.append(tela_inicial)
+
         pagina.update()
 
     
@@ -22,5 +27,5 @@ def main(pagina:ft.Page):
     roteamento()
 
     #abrindo pagina inicial
-    pagina.views.append(tela_cadastro_usuario)
+    pagina.views.append(tela_login_usuario)
 ft.run(main)
