@@ -14,7 +14,10 @@ class CadastroUsuarioView(ft.View):
         self.vertical_alignment = 'CENTER'
         self.horizontal_alignment = 'CENTER'
 
-        titulo = ft.Text(value='Cadastro de Usuario')
+        logo = ft.Image(src='img/logo2.png',
+                        width=500)
+
+        titulo = ft.Text(value='CADASTRE UM NOVO USUÁRIO')
 
         self.campo_usuario = ft.TextField(label='Usuário',
                                           
@@ -57,7 +60,8 @@ class CadastroUsuarioView(ft.View):
                              alignment='center')
 
 
-        self.controls = [titulo,
+        self.controls = [logo,
+                         titulo,
                          self.campo_usuario,
                          self.campo_senha,
                          coluna_botoes]

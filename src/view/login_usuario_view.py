@@ -14,7 +14,10 @@ class LoginUsuarioView(ft.View):
         self.vertical_alignment = 'CENTER'
         self.horizontal_alignment = 'CENTER'
 
-        titulo = ft.Text(value='Login')
+        logo = ft.Image(src='img/logo2.png',
+                        width=500)
+
+        titulo = ft.Text(value='ENTRE COM SEU USUÁRIO')
 
         self.campo_usuario = ft.TextField(label='Usuário',
                                           width=300)
@@ -53,7 +56,8 @@ class LoginUsuarioView(ft.View):
                              alignment='center')
 
 
-        self.controls = [titulo,
+        self.controls = [logo,
+                         titulo,
                          self.campo_usuario,
                          self.campo_senha,
                          coluna_botoes]
@@ -64,12 +68,13 @@ class LoginUsuarioView(ft.View):
         usuario = self.campo_usuario.value
         senha = self.campo_senha.value
 
-        if Usuario().verificar(usuario,senha):
-            self.pagina.show_dialog(ft.SnackBar(content=ft.Text("Login efetuado com sucesso!",
-                                                                color="#ffffff", text_align='center'),
-                                                                bgcolor="#8FBC8F"
-                                                                ))
+
+        resultado = Usuario().verificar(usuario,senha)
+
+        if resultado:
             self.pagina.navigate('/inicio')
+
+            self.pagina.session.store.set('usuario_logado',resultado)
 
             
         else:

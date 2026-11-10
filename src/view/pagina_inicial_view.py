@@ -16,5 +16,11 @@ class PaginaInicialView(ft.View):
 
         titulo = ft.Text(value='Pagina Inicial BB')
 
+        dados_usuario = pagina.session.store.get('usuario_logado')
+        nome_usuario = dados_usuario["login"]
+        self.pagina.show_dialog(ft.SnackBar(content=ft.Text(f"Login efetuado com sucesso. Seja bem vindo {nome_usuario}!",
+                                                                color="#ffffff", text_align='center'),
+                                                                bgcolor="#8FBC8F"
+                                                                ))
 
         self.controls = [titulo]
