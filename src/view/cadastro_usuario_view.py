@@ -66,7 +66,10 @@ class CadastroUsuarioView(ft.View):
     def cadastrar(self):
         #verifica se existem valores nos campos
         if self.campo_usuario.value == "" or self.campo_senha.value == "":
-            self.pagina.show_dialog(ft.SnackBar(ft.Text("Você não pode cadastrar campos sem valor!",color="#ce2222")))
+            self.pagina.show_dialog(ft.SnackBar(content=ft.Text("Você não pode cadastrar campos sem valor!",
+                                                                color="#FFFFFF", text_align='center'),
+                                                                bgcolor='#E06666'
+                                                                ))
             return False
         
         else:
@@ -75,12 +78,19 @@ class CadastroUsuarioView(ft.View):
 
         #snackbar de status do cadastro
         if Usuario().cadastrar(usuario,senha):
-            self.pagina.show_dialog(ft.SnackBar(ft.Text("Usuário cadastrado com sucesso!",color="#69ec48")))
+            self.pagina.show_dialog(ft.SnackBar(ft.Text("Usuário cadastrado com sucesso!",
+                                                        color="#FFFFFF", text_align='center'),
+                                                        bgcolor='#8FBC8F'
+                                                        ))
+            self.pagina.navigate('/inicio')
 
 
         else:
-            self.pagina.show_dialog(ft.SnackBar(ft.Text("Esse nome de usuário já está sendo usado por outra pessoa. Tente uma combinação diferente.", color="#ce2222")))
+            self.pagina.show_dialog(ft.SnackBar(ft.Text("Esse nome de usuário já está sendo usado por outra pessoa. Tente uma combinação diferente.",
+                                                        color="#FFFFFF", text_align='center'),
+                                                        bgcolor='#E06666'
+                                                        ))
 
 
-    async def ir_para_login(self):
-        await self.pagina.push_route('/login')
+    def ir_para_login(self):
+        self.pagina.navigate('/login')
