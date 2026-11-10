@@ -86,7 +86,7 @@ class CadastroUsuarioView(ft.View):
                                                         color="#FFFFFF", text_align='center'),
                                                         bgcolor='#8FBC8F'
                                                         ))
-            self.pagina.navigate('/inicio')
+            self.pagina.navigate('/login')
 
 
         else:

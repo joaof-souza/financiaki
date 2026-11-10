@@ -1,5 +1,4 @@
 import flet as ft
-from src.model.usuario_model import Usuario
 
 class PaginaInicialView(ft.View):
     def __init__(self, pagina:ft.Page):
@@ -17,6 +16,11 @@ class PaginaInicialView(ft.View):
         titulo = ft.Text(value='Pagina Inicial BB')
 
         dados_usuario = pagina.session.store.get('usuario_logado')
+
+        if not dados_usuario:
+            self.pagina.navigate('/login')
+            return
+
         nome_usuario = dados_usuario["login"]
         self.pagina.show_dialog(ft.SnackBar(content=ft.Text(f"Login efetuado com sucesso. Seja bem vindo {nome_usuario}!",
                                                                 color="#ffffff", text_align='center'),
