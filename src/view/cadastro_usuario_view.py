@@ -20,12 +20,11 @@ class CadastroUsuarioView(ft.View):
         titulo = ft.Text(value='CADASTRE UM NOVO USUÁRIO')
 
         self.campo_usuario = ft.TextField(label='Usuário',
-                                          
                                           width=300)
+        
         self.campo_senha = ft.TextField(label='Senha',
                                    password=True,
                                    can_reveal_password=True,
-                                   
                                    width=300)
 
         botao_cadastrar = ft.OutlinedButton(content='CADASTRAR',
