@@ -66,6 +66,7 @@ class CadastroCategoriaView(ft.View):
                                                         color="#ffffff", text_align='center'),
                                                         bgcolor="#8FBC8F"
                                                         ))
+            self.campo_categoria.value=''
             
 
         else:
