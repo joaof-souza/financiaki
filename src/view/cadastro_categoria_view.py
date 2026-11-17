@@ -84,7 +84,8 @@ class CadastroCategoriaView(ft.View):
 
             for categoria in categorias:
                 nome_categoria = categoria.get('categoria')
-                texto = ft.Text(value=nome_categoria)
+                texto = ft.TextField(value=nome_categoria,
+                                     read_only=True)
                 self.lista_categorias.append(texto)
 
         self.pagina.update()
