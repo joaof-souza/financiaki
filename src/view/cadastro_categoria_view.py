@@ -84,8 +84,24 @@ class CadastroCategoriaView(ft.View):
 
             for categoria in categorias:
                 nome_categoria = categoria.get('categoria')
+                id_categoria = categoria.get('cod_categoria')
+
                 texto = ft.TextField(value=nome_categoria,
                                      read_only=True)
-                self.lista_categorias.append(texto)
+                
+                botao_excluir = ft.IconButton(ft.Icons.DELETE,
+                                            on_click=lambda:self.excluir_categoria(id_categoria),
+                                            key=id_categoria,
+                                            tooltip='Excluir Categoria')
+                
+
+                linha_nova = ft.Row(controls=[texto,botao_excluir], alignment='center')
+                self.lista_categorias.append(linha_nova)
 
         self.pagina.update()
+
+    def excluir_categoria(self,excluir):
+        Categoria.excluir(cod_categoria=excluir)
+        self.atualizar_lista_categorias()
+
+
