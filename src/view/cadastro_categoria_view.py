@@ -78,11 +78,12 @@ class CadastroCategoriaView(ft.View):
     
     def atualizar_lista_categorias(self):
         categorias = Categoria().recuperar(self.usuario)
+        self.lista_categorias.clear()
 
         if categorias:
 
             for categoria in categorias:
-                nome_categoria = categoria.get('nome')
+                nome_categoria = categoria.get('categoria')
                 texto = ft.Text(value=nome_categoria)
                 self.lista_categorias.append(texto)
 

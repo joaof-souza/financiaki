@@ -71,7 +71,7 @@ class Categoria:
 
             categorias = cursor.fetchall()
             conexao.close()
-            print(categorias)
+            return categorias
 
         except:
             print('Erro ao exibir categorias')
