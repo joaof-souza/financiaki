@@ -34,7 +34,9 @@ class CadastroCategoriaView(ft.View):
 
         self.lista_categorias = []
 
-        coluna_lista_categorias = ft.Column(controls=self.lista_categorias)
+        coluna_lista_categorias = ft.Column(controls=self.lista_categorias,
+                                            height=800,
+                                            scroll=ft.ScrollMode.ADAPTIVE)
 
         self.atualizar_lista_categorias()
 
@@ -104,5 +106,8 @@ class CadastroCategoriaView(ft.View):
     def excluir_categoria(self,excluir):
         Categoria.excluir(cod_categoria=excluir)
         self.atualizar_lista_categorias()
-
+        self.pagina.show_dialog(ft.SnackBar(content=ft.Text(f"Categoria excluida com sucesso!",
+                                                                color="#ffffff", text_align='center'),
+                                                                bgcolor="#8FBC8F"
+                                                                ))
 
