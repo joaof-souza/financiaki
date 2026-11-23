@@ -4,6 +4,7 @@ from src.view.login_usuario_view import LoginUsuarioView
 from src.view.pagina_inicial_view import PaginaInicialView
 from src.view.cadastro_categoria_view import CadastroCategoriaView
 from src.view.cadastro_despesas_view import CadastroDespesasView
+from src.view.exibir_despesas_view import ExibirDespesasView
 
 def main(pagina:ft.Page):
 
@@ -18,7 +19,7 @@ def main(pagina:ft.Page):
         elif item_clicado == 2:
             pagina.navigate('/c_despesa')
         elif item_clicado == 3:
-            pagina.navigate('/')
+            pagina.navigate('/todas_despesas')
         elif item_clicado == 4:
             pagina.navigate('/')
         elif item_clicado == 5:
@@ -60,6 +61,13 @@ def main(pagina:ft.Page):
             tela_cadastro_despesa = CadastroDespesasView(pagina)
             pagina.views.append(tela_cadastro_despesa)
             tela_cadastro_despesa.navigation_bar = barra_navegacao
+
+
+        elif pagina.route == '/todas_despesas':
+            tela_exibir_despesas = ExibirDespesasView(pagina)
+            pagina.views.append(tela_exibir_despesas)
+            tela_exibir_despesas.navigation_bar = barra_navegacao
+
 
         pagina.update()
 
