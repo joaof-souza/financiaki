@@ -1,5 +1,6 @@
 import flet as ft
 from src.model.despesa_model import Despesas
+from src.model.categoria_model import Categoria
 
 class CadastroDespesasView(ft.View):
     def __init__(self, pagina:ft.Page):
@@ -17,9 +18,7 @@ class CadastroDespesasView(ft.View):
 
         dados_usuario = pagina.session.store.get('usuario_logado')
         self.usuario = dados_usuario['login']
-        
-        categorias_salvas = pagina.session.store.get('categoria_salva')
-        self.id_categoria = categorias_salvas['cod_categorias']
+    
 
         titulo = ft.Text(value='DESPESAS')
 
@@ -28,11 +27,28 @@ class CadastroDespesasView(ft.View):
                                        width=300)
 
         campo_valor = ft.TextField(label='Valor',
-                                   keyboard_type=ft.KeyboardType.NUMBER)
+                                   keyboard_type=ft.KeyboardType.NUMBER,
+                                   width=300)
 
-        campo_data = ft.DatePicker()
+        campo_data = ft.TextField(label='Data',
+                                  width=300)
 
+        categorias = Categoria().recuperar(self.usuario)
 
+        opcoes = []
 
+        for categoria in categorias:
+            opcoes.append(ft.DropdownOption(key=categoria.get('cod_categoria'),
+                                            text=categoria.get('categoria')))
 
-        self.controls=[titulo]
+        campo_categoria = ft.Dropdown(options=opcoes)
+
+        botao_adicionar = ft.IconButton(ft.Icons.ADD,
+                                        tooltip='Cadastrar Despesa')
+
+        self.controls=[titulo,
+                       campo_descricao,
+                       campo_valor,
+                       campo_data,
+                       campo_categoria,
+                       botao_adicionar]
