@@ -6,6 +6,8 @@ from src.view.cadastro_categoria_view import CadastroCategoriaView
 
 def main(pagina:ft.Page):
 
+    pagina.window.maximized= True
+
     def navegacao(component):
         item_clicado = component.control.selected_index
         if item_clicado == 0:
