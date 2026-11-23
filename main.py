@@ -3,6 +3,7 @@ from src.view.cadastro_usuario_view import CadastroUsuarioView
 from src.view.login_usuario_view import LoginUsuarioView
 from src.view.pagina_inicial_view import PaginaInicialView
 from src.view.cadastro_categoria_view import CadastroCategoriaView
+from src.view.cadastro_despesas_view import CadastroDespesasView
 
 def main(pagina:ft.Page):
 
@@ -11,19 +12,22 @@ def main(pagina:ft.Page):
     def navegacao(component):
         item_clicado = component.control.selected_index
         if item_clicado == 0:
-            pagina.navigate('/categoria')
-        elif item_clicado == 1:
             pagina.navigate('/inicio')
+        elif item_clicado == 1:
+            pagina.navigate('/categoria')
         elif item_clicado == 2:
-            pagina.navigate('/')
+            pagina.navigate('/c_despesa')
         elif item_clicado == 3:
             pagina.navigate('/')
         elif item_clicado == 4:
+            pagina.navigate('/')
+        elif item_clicado == 5:
             pagina.navigate('/login')
 
     barra_navegacao = ft.NavigationBar(destinations=[
-        ft.NavigationBarDestination(icon=ft.Icons.CIRCLE, label='Categorias'),
-        ft.NavigationBarDestination(icon=ft.Icons.SIGNAL_CELLULAR_CONNECTED_NO_INTERNET_0_BAR_ROUNDED, label='Inicio'),
+        ft.NavigationBarDestination(icon=ft.Icons.CIRCLE, label='Inicio'),
+        ft.NavigationBarDestination(icon=ft.Icons.SIGNAL_CELLULAR_CONNECTED_NO_INTERNET_0_BAR_ROUNDED, label='Categorias'),
+        ft.NavigationBarDestination(icon=ft.Icons.TEXT_ROTATION_ANGLEDOWN_OUTLINED, label='Cadastrar Despesas'),
         ft.NavigationBarDestination(icon=ft.Icons.TEXT_ROTATION_ANGLEDOWN_OUTLINED, label='Todas Despesas'),
         ft.NavigationBarDestination(icon=ft.Icons.DIRECTIONS_RAILWAY_FILLED_OUTLINED, label='Despesas por Categoria'),
         ft.NavigationBarDestination(icon=ft.Icons.EXIT_TO_APP, label='Sair')
@@ -51,6 +55,11 @@ def main(pagina:ft.Page):
             tela_cadastro_categoria = CadastroCategoriaView(pagina)
             pagina.views.append(tela_cadastro_categoria)
             tela_cadastro_categoria.navigation_bar = barra_navegacao
+
+        elif pagina.route == '/c_despesa':
+            tela_cadastro_despesa = CadastroDespesasView(pagina)
+            pagina.views.append(tela_cadastro_despesa)
+            tela_cadastro_despesa.navigation_bar = barra_navegacao
 
         pagina.update()
 

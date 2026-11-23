@@ -20,7 +20,7 @@ class CadastroCategoriaView(ft.View):
 
 
 
-        titulo = ft.Text(value='categorias')
+        titulo = ft.Text(value='CADASTRE UMA CATEGORIA')
 
         self.campo_categoria = ft.TextField(label='Nome da categoria',
                                             width=300)
@@ -29,7 +29,7 @@ class CadastroCategoriaView(ft.View):
                                         tooltip='Cadastrar Categoria',
                                         on_click=self.cadastrar)
         
-
+    
         titulo_lista = ft.Text(value='CATEGORIAS CADASTRADAS')
 
         self.lista_categorias = []
