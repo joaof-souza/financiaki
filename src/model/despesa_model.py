@@ -36,21 +36,21 @@ class Despesas:
 
         try:
             if conexao == None:
-                print('Erro ao tentar conectar')
+                print('Erro ao tentar conectar\n')
                 return None
 
-            cursor.execute('''
+            cursor.execute("""
                             SELECT login, descricao, data, valor, cod_categoria FROM tb_despesas
-                            WHERE login = %s
-                            ''',
+                            WHERE login = %s;
+                            """,
                             [login])
 
             categorias = cursor.fetchall()
             conexao.close()
-            print(categorias)
+            return categorias
 
         except Exception as erro:
-            print(f'ERRO AO INSERIR {erro}')
+            print(f'ERRO AO INSERIR {erro}\n')
             return False
 
 
@@ -73,7 +73,6 @@ class Despesas:
 
             categorias = cursor.fetchall()
             conexao.close()
-            print(categorias)
 
         except Exception as erro:
             print(f'ERRO AO INSERIR {erro}')
