@@ -48,7 +48,9 @@ class Despesas:
                             tb_despesas.cod_despesa,
                             tb_categorias.categoria
                             FROM tb_despesas
-                            INNER JOIN tb_categorias ON tb_categorias.login = tb_despesas.cod_categoria
+                            INNER JOIN tb_categorias 
+                                ON tb_categorias.cod_categoria = tb_despesas.cod_categoria
+                               AND tb_categorias.login = tb_despesas.login
                             WHERE tb_despesas.login = %s;
                             """,
                             [login])
@@ -59,7 +61,7 @@ class Despesas:
 
         except Exception as erro:
             print(f'ERRO AO INSERIR {erro}\n')
-            return False
+            return []
 
 
 
@@ -73,18 +75,29 @@ class Despesas:
                 return None
 
             cursor.execute('''
-                            SELECT login, descricao, data, valor, cod_categoria FROM tb_despesas
-                            WHERE login = %s
-                            AND cod_categoria = %s
+                            SELECT tb_despesas.cod_despesa,
+                                   tb_despesas.login,
+                                   tb_despesas.descricao,
+                                   tb_despesas.data,
+                                   tb_despesas.valor,
+                                   tb_despesas.cod_categoria,
+                                   tb_categorias.categoria
+                            FROM tb_despesas
+                            INNER JOIN tb_categorias
+                                ON tb_categorias.cod_categoria = tb_despesas.cod_categoria
+                               AND tb_categorias.login = tb_despesas.login
+                            WHERE tb_despesas.login = %s
+                              AND tb_despesas.cod_categoria = %s
                             ''',
                             [login, cod_categoria])
 
-            categorias = cursor.fetchall()
+            despesas = cursor.fetchall()
             conexao.close()
+            return despesas
 
         except Exception as erro:
             print(f'ERRO AO INSERIR {erro}')
-            return False
+            return []
 
 
 
