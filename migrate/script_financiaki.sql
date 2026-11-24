@@ -24,7 +24,7 @@ CREATE TABLE tb_despesas (
  login VARCHAR(20) NOT NULL,
  descricao VARCHAR(100),
  data DATE,
- valor DECIMAL(2),
+ valor DECIMAL(10,2),
  cod_categoria INT NOT NULL,
 
  PRIMARY KEY (cod_despesa,login),

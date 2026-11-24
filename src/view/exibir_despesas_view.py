@@ -27,7 +27,7 @@ class ExibirDespesasView(ft.View):
                                        ft.DataColumn(label='CATEGORIA'),
                                        ft.DataColumn(label='VALOR'),
                                        ft.DataColumn(label='DATA'),
-                                       ft.DataColumn(label='EXCLUIR')],
+                                       ft.DataColumn(label='')],
                                        rows=self.lista_despesas)
 
         self.atualizar_lista_despesas()
