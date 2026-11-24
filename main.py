@@ -8,7 +8,8 @@ from src.view.exibir_despesas_view import ExibirDespesasView
 
 def main(pagina:ft.Page):
 
-
+    pagina.window.maximized= True
+    pagina.update()
 
     def navegacao(component):
         item_clicado = component.control.selected_index

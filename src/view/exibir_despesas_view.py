@@ -41,7 +41,7 @@ class ExibirDespesasView(ft.View):
                 cells=[
                     ft.DataCell(ft.Text(str(despesa.get('cod_categoria')))),
                     ft.DataCell(ft.Text(str(despesa.get('descricao')))),
-                    ft.DataCell(ft.Text(str(despesa.get('cod_categoria')))),
+                    ft.DataCell(ft.Text(str(despesa.get('categoria')))),
                     ft.DataCell(ft.Text(str(despesa.get('valor')))),
                     ft.DataCell(ft.Text(str(despesa.get('data')))),
                 ]

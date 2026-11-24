@@ -40,8 +40,16 @@ class Despesas:
                 return None
 
             cursor.execute("""
-                            SELECT login, descricao, data, valor, cod_categoria FROM tb_despesas
-                            WHERE login = %s;
+                            SELECT tb_despesas.cod_categoria,
+                            tb_despesas.login,
+                            tb_despesas.descricao,
+                            tb_despesas.data,
+                            tb_despesas.valor, 
+                            tb_despesas.cod_despesa,
+                            tb_categorias.categoria
+                            FROM tb_despesas
+                            INNER JOIN tb_categorias ON tb_categorias.login = tb_despesas.cod_categoria
+                            WHERE tb_despesas.login = %s;
                             """,
                             [login])
 
